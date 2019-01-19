@@ -27,6 +27,7 @@ public class HistoryExample extends Composite implements ValueChangeHandler<Stri
 
     private FlowPanel setUpGui() {
         FlowPanel toolbar = new FlowPanel();
+
         FlowPanel histories = new FlowPanel();
         home = new Button(HOME);
         products = new Button(PRODUCTS);
@@ -39,6 +40,7 @@ public class HistoryExample extends Composite implements ValueChangeHandler<Stri
         FlowPanel directions = new FlowPanel();
         back = new Button(BACK);
         forward = new Button(FORWARD);
+
         directions.add(back);
         directions.add(forward);
 

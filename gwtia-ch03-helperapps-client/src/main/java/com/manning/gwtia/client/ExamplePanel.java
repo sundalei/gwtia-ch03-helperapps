@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.manning.gwtia.client;
 
@@ -23,28 +23,30 @@ import com.manning.gwtia.client.history.HistoryExample;
  * The template example panel, built for UiBinder instance (see Chapter 6)
  * This is just a convenient way to display the frame for our examples; for the 
  * examples code, you should look in the relevant package - in this case
- * 
+ *
  * ch03.client.history for the History example
  * ch03.client.layout for the Layout example
- * 
+ *
  * (the ch03.client.intro package contains the introduction screen you see when the application loads)
  *
  */
-public class ExamplePanel extends Composite
-{
-	/**
-	 * UiBinder template code - see chapter 6.
-	 */
+public class ExamplePanel extends Composite {
+    /**
+     * UiBinder template code - see chapter 6.
+     */
     private static ExamplePanelUiBinder uiBinder = GWT.create(ExamplePanelUiBinder.class);
-    interface ExamplePanelUiBinder extends UiBinder<Widget, ExamplePanel> {}
-    
+
+    interface ExamplePanelUiBinder extends UiBinder<Widget, ExamplePanel> {
+    }
+
     /**
      * ClientBundle code for the GWT in Action logo shown on the main page.
      */
     interface Resources extends ClientBundle {
-        @Source("gwtia.jpg") public ImageResource logo();
+        @Source("gwtia.jpg")
+        public ImageResource logo();
     }
-    
+
     /**
      * The introPanel that displays introduction information.
      */
@@ -57,7 +59,8 @@ public class ExamplePanel extends Composite
     /**
      * The Panel in the main screen where the examples will be displayed.
      */
-    @UiField Panel exampleArea;
+    @UiField
+    Panel exampleArea;
 
 
     /**
@@ -66,7 +69,7 @@ public class ExamplePanel extends Composite
      * Adds a ResizeHandler to manage and resize events of the browser that are created
      * Sets up the IntroPanel as the first widget shown to the user.
      */
-    public ExamplePanel (){
+    public ExamplePanel() {
         initWidget(uiBinder.createAndBindUi(this));
         setWidgetToMaxWidthAndHeight();
         Window.addResizeHandler(resizeHandler);
@@ -78,8 +81,8 @@ public class ExamplePanel extends Composite
      * If the user clicks on the history example button, show the HistoryPanel.
      */
     @UiHandler("history")
-    public void showHistory (ClickEvent event){
-    	showHistory();
+    public void showHistory(ClickEvent event) {
+        showHistory();
     }
 
     /**
@@ -87,8 +90,10 @@ public class ExamplePanel extends Composite
      * Called when the history button is clicked in this widget, or if the user initiates it via
      * a history token in the URL (clicks back/forward, or arrives at http://.......Example.html#history
      */
-    public void showHistory(){
-    	if (historyExample==null) historyExample = new HistoryExample();
+    public void showHistory() {
+        if (historyExample == null) {
+            historyExample = new HistoryExample();
+        }
         setWidgetAsExample(historyExample);
     }
 
@@ -97,43 +102,35 @@ public class ExamplePanel extends Composite
      * Called when the intro button is clicked in this widget, or if the user initiates it via
      * lack of a history token in the URL (clicks back/forward, or arrives at http://.......Example.html
      */
-    public void showInstructionsPanel()
-    {
+    public void showInstructionsPanel() {
         setWidgetAsExample(introPanel);
     }
-    
-    
+
+
     @UiHandler("introPanel")
-    void showInstructionsPanel (ClickEvent event)
-    {
-    	showInstructionsPanel();
+    void showInstructionsPanel(ClickEvent event) {
+        showInstructionsPanel();
     }
 
 
-    
     /**
      * Simple method to set a widget in the example area and clear out any previous widget.
      * @param widget The new widget to show as the example.
      */
-    private void setWidgetAsExample (Widget widget)
-    {
+    private void setWidgetAsExample(Widget widget) {
         exampleArea.clear();
         exampleArea.add(widget);
     }
 
 
-
     /* *************  WIDGET CENTERING CODE *************** */
-    private ResizeHandler resizeHandler = new ResizeHandler()
-    {
-        public void onResize (ResizeEvent event)
-        {
+    private ResizeHandler resizeHandler = new ResizeHandler() {
+        public void onResize(ResizeEvent event) {
             setWidgetToMaxWidthAndHeight();
         }
     };
 
-    private void setWidgetToMaxWidthAndHeight ()
-    {
+    private void setWidgetToMaxWidthAndHeight() {
         setWidth("100%");
         setHeight(Window.getClientHeight() + "px");
     }
